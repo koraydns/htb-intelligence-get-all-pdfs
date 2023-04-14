@@ -2,6 +2,8 @@ from datetime import date, timedelta
 import requests
 import urllib.request
 
+ip = "10.10.10.248" #CHANGE THIS
+
 """
 Get All Days Between Given Interval
 """
@@ -20,10 +22,10 @@ def get_pdfs(dates):
     pdfs = []
     for dt in dates:
         dt_format = dt.strftime("%Y-%m-%d-upload.pdf")
-        pdf_req = requests.get('http://10.10.10.248/documents/'+dt_format)
+        pdf_req = requests.get('http://'+ip+'/documents/'+dt_format)
         if pdf_req.status_code == 200:
             pdfs.append(dt_format)
-            print('http://10.10.10.248/documents/'+dt_format)
+            print('http://'+ip+'/documents/'+dt_format)
     return pdfs
 
 """
@@ -31,7 +33,7 @@ Download PDFs on Intelligence Server
 """
 def downlad_pdfs(pdfs):
     for pdf in pdfs:
-        with urllib.request.urlopen("http://10.10.10.248/documents/"+pdf) as response, open(pdf, 'wb') as out_file:
+        with urllib.request.urlopen('http://'+ip+'/documents/'+pdf) as response, open(pdf, 'wb') as out_file:
             data = response.read()
             out_file.write(data)
 

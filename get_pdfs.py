@@ -1,3 +1,7 @@
+# get_pdfs.py
+# Script to get all PDF files on the HackTheBox Intelligence machine.
+# GitHub: https://github.com/koraydns/htb-intelligence-get-all-pdfs
+
 from datetime import date, timedelta
 import requests
 import urllib.request
